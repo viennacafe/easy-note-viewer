@@ -21,17 +21,33 @@
     "@vitejs/plugin-react": "^4.3.4",
     "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",
-    "electron": "^35.0.0",
-    "electron-builder": "^25.1.8",
+    "electron": "^43.3.0",
+    "electron-builder": "^26.15.3",
     "vite": "^6.0.7",
     "wait-on": "^8.0.1"
   },
   "build": {
     "appId": "com.example.noteviewer.customprotocol",
     "productName": "Easy Note Viewer",
-    "directories": {"output": "release"},
-    "files": ["dist/**/*", "electron/**/*", "package.json"],
-    "win": {"target": ["portable", "nsis"]},
-    "linux": {"target": ["AppImage"], "category": "Utility"}
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility"
+    }
   }
 }
