@@ -124,10 +124,11 @@ export default function App() {
                                                 placeholder="제목, 파일명, 경로 검색"/>
                     <div>{loading ? '불러오는 중...' : `검색 결과 ${notes.length}개`}</div>
                 </div>
-                <div className="list">{notes.map(n => <button key={n.id}
-                                                              className={selected?.id === n.id ? 'active' : ''}
-                                                              onClick={() => open(n)}>
-                    <strong>{n.title}</strong><span>{n.relativePath}</span></button>)}</div>
+                <div className="list">
+                    {notes.map(n => <button key={n.id}
+                                      className={selected?.id === n.id ? 'active' : ''}
+                                      onClick={() => open(n)}>
+                    <strong>{n.title}</strong><span>[{n.date}] {n.sender}</span></button>)}</div>
             </aside>
             <section className="preview">
                 <div className="previewHeader"><strong>{title}</strong>{selected &&

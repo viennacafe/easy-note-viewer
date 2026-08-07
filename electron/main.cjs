@@ -61,7 +61,12 @@ function walk(dir, base = dir) {
 function titleOf(p) {
     try {
         const $ = cheerio.load(fs.readFileSync(p, 'utf8'));
-        return $('title').first().text().trim() || $('h1').first().text().trim() || path.basename(p, path.extname(p));
+        return {
+            "title": $('tr').eq(0).find('th').text().trim(),
+            "date": $('tr').eq(1).find('td').text().trim(),
+            "sender": $('tr').eq(2).find('td').text().trim()
+        }
+            //|| $('h1').first().text().trim() || path.basename(p, path.extname(p));
     } catch {
         return path.basename(p, path.extname(p));
     }
@@ -137,7 +142,9 @@ ipcMain.handle('notes:list-all', (_e, q = '') => {
     const kw = String(q).trim().toLowerCase();
     let items = walk(notesRoot).map(x => ({
         id: x.relativePath,
-        title: titleOf(x.fullPath),
+        title: titleOf(x.fullPath).title,
+        date: titleOf(x.fullPath).date,
+        sender: titleOf(x.fullPath).sender,
         name: path.basename(x.fullPath),
         relativePath: x.relativePath
     }));
